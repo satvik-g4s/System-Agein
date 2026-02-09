@@ -84,8 +84,9 @@ if st.button("Run"):
     df4.columns = df3.columns
     df3 = pd.concat([df3, df4], ignore_index=True)
 
-    curr_date = pd.to_datetime("2026-01-31")
-
+    curr_date = st.date_input("📅 Select Ageing Date",value=pd.Timestamp.today().date())
+    curr_date = pd.to_datetime(curr_date)
+    
     df3['OLD Invoice Date'] = pd.to_datetime(df3['OLD Invoice Date'], errors="coerce")
 
     G = nx.DiGraph()
